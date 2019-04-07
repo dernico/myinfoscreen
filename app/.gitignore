@@ -1,2 +1,2 @@
 /build
-main\java\n\der\myinfoscreen\components\weather\services\OpenWeatherApi.java
+app\src\main\java\n\der\myinfoscreen\components\weather\services\OpenWeatherApi.java
