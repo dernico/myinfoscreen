@@ -1,5 +1,6 @@
 package n.der.myinfoscreen;
 
+import android.app.AlarmManager;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
@@ -40,8 +41,7 @@ public class SettingsActivity extends AppCompatActivity {
                         ISettingsStore store = new SharedPreferencesSettingsStore(getApplicationContext());
                         WakeupTime wakeupTime = new WakeupTime(hourOfDay, minutes);
                         store.SaveWakeupTime(wakeupTime);
-                        _alarmService.setAlarm(wakeupTime);
-
+                        _alarmService.setAlarm(wakeupTime, AlarmManager.INTERVAL_DAY);
 
                     }
                 }, currentHour, currentMinute, true);

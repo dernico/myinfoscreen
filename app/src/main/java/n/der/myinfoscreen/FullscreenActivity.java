@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -137,7 +139,39 @@ public class FullscreenActivity extends AppCompatActivity {
 
         }, 1000 * 60 * 60 * 2); // wait 2h until remove flags
         //}, 1000 * 60 * 10); // wait 10m until remove flags
+
+
+
+//        createWeatherWidget();
+        createNewsWidget();
+        createCalendarWidget();
     }
+
+//    private void createWeatherWidget(){
+//        WebView webView = (WebView) findViewById(R.id.widget_weather);
+//        webView.setWebViewClient(new WebViewClient());
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setUseWideViewPort(false);
+//        webView.loadUrl("https://www.google.com/search?q=google+weather");
+//    }
+
+    private void createNewsWidget(){
+        WebView webView = (WebView) findViewById(R.id.widget_news);
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setUseWideViewPort(false);
+        webView.loadUrl("https://news.google.com");
+    }
+
+
+    private void createCalendarWidget(){
+        WebView webView = (WebView) findViewById(R.id.widget_calendar);
+        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setUseWideViewPort(false);
+        webView.loadUrl("https://calendar.google.com");
+    }
+
 
     private void TimerMethod()
     {
