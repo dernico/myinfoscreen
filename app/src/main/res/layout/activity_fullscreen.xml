@@ -19,12 +19,30 @@
             android:orientation="vertical">
 
 
-            <fragment
-                android:name="n.der.myinfoscreen.components.weather.WeatherFragment"
-                android:id="@+id/weather_fragment"
+            <LinearLayout
+                android:id="@+id/fragments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/settings_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_settings" />
+
+                <fragment
+                    android:id="@+id/clock_fragment"
+                    android:name="n.der.myinfoscreen.components.clock.ClockFragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></fragment>
+                <fragment
+                    android:name="n.der.myinfoscreen.components.weather.WeatherFragment"
+                    android:id="@+id/weather_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
 
 
             <LinearLayout
@@ -60,12 +78,6 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent">
 
-            <Button
-                android:id="@+id/settings_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/button_settings" />
 
             <Button
                 android:id="@+id/dummy_button"

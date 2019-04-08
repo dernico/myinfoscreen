@@ -13,7 +13,7 @@ import static android.content.Context.ALARM_SERVICE;
 
 public class AlarmService implements IAlarmService {
     private Context _ctx;
-    private final int _alarmRequestCode = 548657895;
+    private final int _alarmRequestCode = 0;
 
     public AlarmService(Context ctx){
         _ctx = ctx;
@@ -25,12 +25,14 @@ public class AlarmService implements IAlarmService {
     }
     @Override
     public void setAlarm(WakeupTime wakeupTime, long intervalMillis) {
+        cancelAlarm(); // cancel previously added alarms
         AlarmManager alarmManager = (AlarmManager) _ctx.getSystemService(ALARM_SERVICE);
         Calendar alarmCalendar = Calendar.getInstance();
         int hour = alarmCalendar.get(Calendar.HOUR_OF_DAY);
         int minute = alarmCalendar.get(Calendar.MINUTE);
         int seconds = alarmCalendar.get(Calendar.SECOND);
 
+        alarmCalendar.setTimeInMillis(System.currentTimeMillis());
         alarmCalendar.set(Calendar.HOUR_OF_DAY, wakeupTime.getHourOfDay());
         alarmCalendar.set(Calendar.MINUTE, wakeupTime.getMinute());
         alarmCalendar.set(Calendar.SECOND, 0);
@@ -44,7 +46,7 @@ public class AlarmService implements IAlarmService {
 
         // set the alarm manager
         if(intervalMillis > 0) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, alarmCalendar.getTimeInMillis(), intervalMillis, pending_intent);
+            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarmCalendar.getTimeInMillis(), intervalMillis, pending_intent);
         }else{
             alarmManager.set(AlarmManager.RTC_WAKEUP, alarmCalendar.getTimeInMillis(), pending_intent);
         }
